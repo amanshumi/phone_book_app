@@ -10,6 +10,18 @@ class ContactDetail extends StatefulWidget {
 }
 
 class _ContactDetailState extends State<ContactDetail> {
+
+  final String? name = Get.arguments["name"];
+  final String? phone = Get.arguments["phone"];
+  final id = Get.parameters["id"];
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    print(Get.parameters);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,13 +51,13 @@ class _ContactDetailState extends State<ContactDetail> {
               height: 30,
             ),
             Container(
-                width: 80,
-                height: 80,
+                width: Get.width,
+                height: 10,
                 padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
                   color: Colors.blue.shade700,
                 ),
-                child: Center(child: Text("G", style: TextStyle(fontWeight: FontWeight.bold, fontFamily: "Poppins", color: Colors.white, fontSize: 40),)),
+                child: Container(),
               ),
             
                         Container(
@@ -64,7 +76,7 @@ class _ContactDetailState extends State<ContactDetail> {
                           width: 10,
                         ),
                         Text(
-                          "George Mason",
+                          name!,
                           style: TextStyle( fontFamily: "Poppins",
                               fontSize: 18),
                         ),
@@ -78,13 +90,38 @@ class _ContactDetailState extends State<ContactDetail> {
                           width: 10,
                         ),
                         Text(
-                          "210-290-2989",
+                          phone!,
                           style: TextStyle( fontFamily: "Poppins",
                               fontSize: 18),
                         ),
                       ],
                     )
                   ]),
+            ),
+            const SizedBox(height: 20,),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: InkWell(onTap: () {
+                              
+                            }, child: Container(
+                              padding: const EdgeInsets.all(14),
+                              decoration: BoxDecoration(color: Colors.blue.shade700, borderRadius: BorderRadius.circular(10)),
+                              child: Text("Edit", textAlign: TextAlign.center, style: TextStyle(fontFamily: "Poppins", color: Colors.white, fontWeight: FontWeight.bold, fontSize: 14),),
+                            ),),
+                ),
+                const SizedBox(width: 30,),
+            Expanded(
+              child: InkWell(onTap: () {
+                
+              }, child: Container(
+                padding: const EdgeInsets.all(14),
+                decoration: BoxDecoration(color: Colors.red.shade700, borderRadius: BorderRadius.circular(10)),
+                child: Text("Delete", textAlign: TextAlign.center, style: TextStyle(fontFamily: "Poppins", color: Colors.white, fontWeight: FontWeight.bold, fontSize: 14),),
+              ),),
+            )
+              ],
             )
           ],
         ),

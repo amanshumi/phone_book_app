@@ -141,7 +141,7 @@ class _HomeState extends State<Home> {
                 itemBuilder: (context, index) {
                   return InkWell(
                     onTap: () {
-                      Get.to(() => ContactDetail());
+                      Get.to(() => ContactDetail(), arguments: {"name": contactList[index]["name"], "phone": contactList[index]["phone"], "id": contactList[index]["_id"]});
                     },
                     child: Contact(
                       contactList[index]["name"], contactList[index]["phone"], databaseHelper, contactList[index]["_id"], context, fetchContacts)
